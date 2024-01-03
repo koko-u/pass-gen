@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-lg-4 col-md-8 col-sm-12 mx-auto">
+            <h3 class="text-center">
+                Password Generator
+            </h3>
+            <form class="mb-5" #form="ngForm">
+                <div class="mb-3">
+                    <label for="length" class="form-label">Password Length</label>
+                    <input type="number" class="form-control" id="length" name="passwordLength"
+                        [ngModel]="passwordConfig().passwordLength">
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="useLetters" name="useLetters"
+                            [ngModel]="passwordConfig().useLetters">
+                        <label class="form-check-label" for="useLetters">Use
+                            Letters</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="useNumbers" name="useNumbers"
+                            [ngModel]="passwordConfig().useNumbers">
+                        <label class="form-check-label" for="useNumbers">Use
+                            Numbers</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="useSymbols" name="useSymbols"
+                            [ngModel]="passwordConfig().useSymbols">
+                        <label class="form-check-label" for="useSymbols">Use
+                            Symbols</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary w-100" (click)="generatePassword()"
+                    [disabled]="isDisabled()">Generate</button>
+            </form>
+            @if (password()) {
+            <div>
+                <label for="password" class="form-label">Your Password is ...</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="password" aria-describedby="clear-button" readonly
+                        [value]="password()">
+                    <button class="btn btn-outline-secondary py-0" type="button" id="clear-button"
+                        (click)="clearPassword()">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <ng-icon name="bootstrapBackspace"></ng-icon>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
